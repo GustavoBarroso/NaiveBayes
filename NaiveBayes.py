@@ -1,5 +1,6 @@
 import numpy as np
 import pandas as pd
+import matplotlib.pyplot as plt
 
 class NaiveBayes:
     def __init__(self):
@@ -67,16 +68,20 @@ class NaiveBayes:
         return predictions
 
 
-# Carregar o arquivo XLSX pelo pandas
-data = pd.read_excel('C:\\Users\\gg_ba\\Downloads\\dados.xlsx')
+data = pd.read_excel('C:\\Users\\gg_ba\\Downloads\\adult.xlsx')
 
 X = data.iloc[:, :-1].values
 y = data.iloc[:, -1].values
-
 naive_bayes = NaiveBayes()
 naive_bayes.fit(X, y)
 
-sample = np.array([[5.6, 4.5, 3.4, 4.2]])  #teste amostra
-predictions = naive_bayes.predict(sample)
+predictions = naive_bayes.predict(X)
 
-print(predictions)
+color_map = {class_value: idx for idx, class_value in enumerate(np.unique(y))}
+colors = [color_map[class_value] for class_value in y]
+
+plt.scatter(range(len(predictions)), predictions, c=colors, cmap='viridis')
+plt.xlabel('Amostras')
+plt.ylabel('Previsões')
+plt.title('Gráfico')
+plt.show()
