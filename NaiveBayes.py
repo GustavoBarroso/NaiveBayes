@@ -68,7 +68,7 @@ class NaiveBayes:
         return predictions
 
 
-data = pd.read_excel('C:\\Users\\gg_ba\\Downloads\\adult.xlsx')
+data = pd.read_excel('C:\\Users\\gg_ba\\Downloads\\voice.xlsx')
 
 X = data.iloc[:, :-1].values
 y = data.iloc[:, -1].values
